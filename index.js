@@ -4,7 +4,9 @@ class livingRoom extends AdventureScene {
     }
 
     preload() {
-        this.load.image("door way", "./assets/DoorWay.png");
+        this.load.path = './assets/';
+        this.load.image("door way", "DoorWay.png");
+        this.load.image("coat", "Coat.png");
     }
 
     onEnter() {
@@ -14,10 +16,44 @@ class livingRoom extends AdventureScene {
         
     }
 }
-
-class bathRoom extends Phaser.Scene {
+    
+class Sink extends AdventureScene {
     constructor() {
-        super('bathroom')
+        super("sink", "Sink")
+    }
+    
+    preload() {
+        this.load.path = './assets/';
+        this.load.image("sink", 'Sink.png');
+        this.load.image("pepper spray", 'Pepper Spray.png');
+    }
+
+    onEnter() {
+        let background = this.add.sprite(715, 540, "sink");
+        background.setScale(1.155);
+    }
+}
+
+    
+class walkWay extends AdventureScene { // whats wrong with this???
+    constructor() {
+        super('walkway')
+    }
+
+    preload() {
+        this.load.image("walkway", "./assets/Walkway.png");
+    }
+    
+    onEnter() {
+        let background = this.add.sprite(715, 540, "Walkway.png");
+        background.setScale(1.155)
+    }
+        
+}
+
+class Stairs extends AdventureScene {
+    constructor() {
+        super('stairs')
     }
 
     preload() {
@@ -31,23 +67,7 @@ class bathRoom extends Phaser.Scene {
         
 }
 
-class bathRoom extends Phaser.Scene {
-    constructor() {
-        super('bathroom')
-    }
-
-    preload() {
-        this.load.image("sink", "./assets/Sink.png");
-    }
-    
-    onEnter() {
-        let background = this.add.sprite(715, 540, "sink");
-        background.setScale(1.155)
-    }
-        
-}
-
-class bathRoom extends Phaser.Scene {
+class badEnd extends Phaser.Scene {
     constructor() {
         super('bathroom')
     }
