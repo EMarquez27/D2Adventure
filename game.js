@@ -3,14 +3,23 @@ class Demo1 extends AdventureScene {
         super("demo1", "First Room");
     }
 
-    onEnter() {
+    preload() {
+        this.load.path = './assets/';
+        this.load.image('Living Room', 'Living room.png');
+        this.load.image('Picture', 'Family Painting');
+        this.load.image('Coat', 'Coat.png');
+        this.load.image('Door', 'Door.png');
+    }
 
-        let clip = this.add.text(this.w * 0.3, this.w * 0.3, "📎 paperclip")
-            .setFontSize(this.s * 2)
+    onEnter() {
+        let background = this.add.sprite(715,540, "Living Room");
+        background.setScale(0.55);
+
+        let painting = this.add.image(this.w * 0.3, this.w * 0.3, "Picture")
             .setInteractive()
-            .on('pointerover', () => this.showMessage("Metal, bent."))
+            .on('pointerover', () => this.showMessage("A picture that was taken during my 18th birthday. We got it framed."))
             .on('pointerdown', () => {
-                this.showMessage("No touching!");
+                this.showMessage("The guy in the back is kinda weird.");
                 this.tweens.add({
                     targets: clip,
                     x: '+=' + this.s,
