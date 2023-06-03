@@ -1,6 +1,6 @@
 class livingRoom extends AdventureScene {
     constructor() {
-        super("door way", "DoorWay.png");
+        super("door way", "DoorWay");
     }
 
     preload() {
@@ -37,7 +37,7 @@ class Sink extends AdventureScene {
     
 class walkWay extends AdventureScene { // whats wrong with this???
     constructor() {
-        super('walkway')
+        super("walkway", "Walkway")
     }
 
     preload() {
@@ -45,7 +45,7 @@ class walkWay extends AdventureScene { // whats wrong with this???
     }
     
     onEnter() {
-        let background = this.add.sprite(715, 540, "Walkway.png");
+        let background = this.add.sprite(715, 540, "walkway");
         background.setScale(1.155)
     }
         
@@ -53,31 +53,31 @@ class walkWay extends AdventureScene { // whats wrong with this???
 
 class Stairs extends AdventureScene {
     constructor() {
-        super('stairs')
+        super("stairs", "Stairs")
     }
 
     preload() {
-        this.load.image("sink", "./assets/Sink.png");
+        this.load.image("stairs", "./assets/Stairs.png");
     }
     
     onEnter() {
-        let background = this.add.sprite(715, 540, "sink");
+        let background = this.add.sprite(715, 540, "stairs");
         background.setScale(1.155)
     }
         
 }
 
-class badEnd extends Phaser.Scene {
+class badEnd extends AdventureScene {
     constructor() {
-        super('bathroom')
+        super("bad end", "Bad End")
     }
 
     preload() {
-        this.load.image("sink", "./assets/Sink.png");
+        this.load.image("bad end", "./assets/Bad End.png");
     }
     
     onEnter() {
-        let background = this.add.sprite(715, 540, "sink");
+        let background = this.add.sprite(715, 540, "bad end");
         background.setScale(1.155)
     }
         
