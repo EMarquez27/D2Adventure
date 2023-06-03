@@ -129,6 +129,6 @@ class badEnd extends Phaser.Scene {
             height: 1080
 
         },
-        scene: [Intro, livingRoom, walkWay, bathRoom, goodEnd, badEnd],
+        scene: [Intro, livingRoom, walkWay, Sink, goodEnd, badEnd],
         title: "Saturday",
     });
