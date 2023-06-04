@@ -12,19 +12,53 @@ class DoorWay extends AdventureScene {
     }
 
     onEnter() {
-        let background = this.add.sprite(700,500, "door way");
-        background.setScale(0.5);
+        let background = this.add.sprite(700,520, "door way");
+        background.setScale(0.55);
 
-        let bathroomDoor = this.add.text(680, 500, " ")
-            .setScale(5)
+        let bathroomDoor = this.add.text(1000, 600, " AD")
+            .setDepth(1)
+            .setScale(10)
             .setInteractive()
             .on('pointerover', () => {
+                this.showMessage("Enter the bathroom.")
                 this.gotoScene("sink")
-            })
+            });
 
-        let mainDoor = this.add.text(307.5, 200, " ")
+        let coat = this.add.image(720, 480, "coat")
+            .setDepth(1)
+            .setScale(0.5)
+            .setInteractive()
+            
+            .on('pointerover', () => this.showMessage("A coat to shield myself from the world. Good coat"))
+            
+            .on('pointerdown', () => {
+                this.showMessage("Coat, ON. Nothing can stop me now.")
+                this.gainItem("coat")
+                this.spriteRemove(coat)
+            })
+        
+        let keys = this.add.image(950, 500, "keys")
+            .setDepth(1)
+            .setScale(0.15)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("Keys for the car and the apartment"))
+            .on('pointerdown', () => {
+                this.showMessage("I dread the day of forgetting these")
+                this.gainItem("keys")
+                this.spriteRemove(keys)
+            });
+    
+            let painting = this.add.text(180, 400, " ")
+            .setDepth(1)
+            .setInteractive()
+            .setScale(10)
+            .on('pointerover', () => this.showMessage("Taken on my 16th birthday. I'm 20 now. The guy in the back is kinda weird."))  
+
+            let mainDoor = this.add.text(700, 480, " ")
+            .setDepth(1)
             .setScale(5)
             .setInteractive()
+
             .on('pointerover', () => {
                 if (this.hasItem("keys")) {
                     this.showMessage("I have my keys. Should be ready to leave now.")
@@ -32,6 +66,7 @@ class DoorWay extends AdventureScene {
                     this.showMessage("I think I'm forgetting something...")
                 }
             })
+
             .on('pointerdown', () => {
                 if (this.hasItem("keys")) {
                     this.showMessage("Time to leave")
@@ -40,43 +75,6 @@ class DoorWay extends AdventureScene {
                     this.showMessage("I think I'm forgetting something...")
                 }
             });
-
-        let coat = this.add.image(720, 480, "coat")
-            .setDepth(1)
-            .setScale(0.5)
-            .setInteractive()
-            //.on('pointerover', () => this.emphasizeItem(coat))
-            .on('pointerover', () => this.showMessage("A coat to shield myself from the world. Good coat"))
-            //.on('pointerout', () => this.deEmphasizeItem(coat))
-            on('pointerdown', () => {
-                this.showMessage("Coat, ON. Nothing can stop me now.")
-                this.gainItem("coat")
-                this.spriteRemove(coat)
-            });
-        
-        let keys = this.add.image(720, 200, "keys")
-            .setDepth(2)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("Keys for the car and the apartment"))
-            on('pointerdown', () => {
-                this.showMessage("I dread the day of forgetting these")
-                this.gainItem("keys")
-                this.spriteRemove(keys)
-            });
-        
-            let painting = this.add.image(200, 300, "painting")
-            .setDepth()
-            .setScale(1)
-            .setInteractive()
-            //.on('pointerover', () => this.emphasizeItem(coat))
-            .on('pointerover', () => this.showMessage("A coat to shield myself from the world. Good coat"))
-            //.on('pointerout', () => this.deEmphasizeItem(coat))
-            on('pointerdown', () => {
-                this.showMessage("Coat, ON. Nothing can stop me now.")
-                this.gainItem("coat")
-                this.spriteRemove(coat)
-            });
-          
     }
 }
 
@@ -223,7 +221,7 @@ const game = new Phaser.Game({
         height: 1080
 
     },
-    //scene: [Intro, DoorWay, Sink, WalkWay, Stairs, BadEnd, Outro1, Outro2],
-    scene: [DoorWay],
+    scene: [Intro, DoorWay, Sink, WalkWay, Stairs, BadEnd, Outro1, Outro2],
+    //scene: [DoorWay],
     title: "Saturday",
 });
