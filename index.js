@@ -79,6 +79,14 @@ class Sink extends AdventureScene {
                 this.gainItem('pepper spray')
                 this.spriteRemove(pepperspray)
         });
+
+        let bathroomExit = this.add.text(180, 780, " ") // exit the bathroom
+            .setFontSize(400)
+            .setInteractive()
+        .on('pointerover', () => this.showMessage("Exit the bathroom"))
+        .on('pointerdown', () => {
+            this.gotoScene("walkway");
+            })
     }
 }
 
