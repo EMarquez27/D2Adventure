@@ -7,11 +7,13 @@ class DoorWay extends AdventureScene {
         this.load.path = './assets/';
         this.load.image("door way", "DoorWay.png");
         this.load.image("coat", "Coat.png");
+        this.load.image("keys", "Keys.png");
+        this.load.image("painting", "painting.png");
     }
 
     onEnter() {
-        let background = this.add.sprite(715, 540, "door way");
-        background.setScale(1.155);
+        let background = this.add.sprite(700,500, "door way");
+        background.setScale(0.5);
 
         let bathroomDoor = this.add.text(680, 500, " ")
             .setScale(5)
@@ -39,17 +41,42 @@ class DoorWay extends AdventureScene {
                 }
             });
 
-        let coat = this.add.image(1200, 1000, "coat")
-            .setScale(5)
+        let coat = this.add.image(720, 480, "coat")
+            .setDepth(1)
+            .setScale(0.5)
             .setInteractive()
-            .on('pointerover', () => this.emphasizeItem(coat))
+            //.on('pointerover', () => this.emphasizeItem(coat))
             .on('pointerover', () => this.showMessage("A coat to shield myself from the world. Good coat"))
-            .on('pointerout', () => this.deEmphasizeItem(coat))
-            .on('pointerdown', () => {
+            //.on('pointerout', () => this.deEmphasizeItem(coat))
+            on('pointerdown', () => {
                 this.showMessage("Coat, ON. Nothing can stop me now.")
-                this.gainItem('coat')
+                this.gainItem("coat")
                 this.spriteRemove(coat)
             });
+        
+        let keys = this.add.image(720, 200, "keys")
+            .setDepth(2)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("Keys for the car and the apartment"))
+            on('pointerdown', () => {
+                this.showMessage("I dread the day of forgetting these")
+                this.gainItem("keys")
+                this.spriteRemove(keys)
+            });
+        
+            let painting = this.add.image(200, 300, "painting")
+            .setDepth()
+            .setScale(1)
+            .setInteractive()
+            //.on('pointerover', () => this.emphasizeItem(coat))
+            .on('pointerover', () => this.showMessage("A coat to shield myself from the world. Good coat"))
+            //.on('pointerout', () => this.deEmphasizeItem(coat))
+            on('pointerdown', () => {
+                this.showMessage("Coat, ON. Nothing can stop me now.")
+                this.gainItem("coat")
+                this.spriteRemove(coat)
+            });
+          
     }
 }
 
@@ -160,7 +187,7 @@ class Intro extends Phaser.Scene {
         this.add.text(800, 375, "Click to Begin").setFontSize(20);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0, 0, 0);
-            this.time.delayedCall(1000, () => this.scene.start('cell'));
+            this.time.delayedCall(1000, () => this.scene.start('doorway'));
         });
     }
 }
@@ -196,6 +223,7 @@ const game = new Phaser.Game({
         height: 1080
 
     },
-    scene: [Intro, DoorWay, Sink, WalkWay, Stairs, BadEnd, Outro1, Outro2],
+    //scene: [Intro, DoorWay, Sink, WalkWay, Stairs, BadEnd, Outro1, Outro2],
+    scene: [DoorWay],
     title: "Saturday",
 });
