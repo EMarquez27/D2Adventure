@@ -95,23 +95,23 @@ class AdventureScene extends Phaser.Scene {
         return this.inventory.includes(item);
     }
 
-    emphasizeItem(item) 
-    {
-        this.tweens.add ({
-            targets: item,
-            scale: 5.5,
-            duration: 100
-        });
-    }
+   spriteRemove(item) { // new method
+    this.tweens.add({
+        targets: item,
+        alpha: {from: 1, to: 0},
+        duration: 500,
+        onComplete: () => item.destroy()
+    })
+   }
 
-    deEmphasizeItem(item)
-    {
-            this.tweens.add ({
-                targets: item,
-                scale: 5,
-                duration: 100
-            });
-    }
+   highlightOnHover(obj) { // new method
+    obj.on('pointerover', () => 
+        obj.setTintFill(0x000000))
+    obj.on('pointerout', () =>
+        obj.clearTint())
+   }
+
+
 
     gainItem(item) {
         if (this.inventory.includes(item)) {

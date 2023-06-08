@@ -45,7 +45,7 @@ class DoorWay extends AdventureScene {
             .setScale(2)
             .on('pointerover', () => this.showMessage("Taken on my 16th birthday. I'm 20 now. The guy in the back is kinda weird."))  
 
-            let mainDoor = this.add.text(550, 300, " main door ")
+            let Door = this.add.text(550, 300, " main door ")
             .setDepth(2)
             .setScale(2)
             .setInteractive()
@@ -66,9 +66,10 @@ class DoorWay extends AdventureScene {
                     this.showMessage("I think I'm forgetting something...")
                 }
             });
+            this.highlightOnHover(Door);
 
             
-        let bathroomDoor = this.add.text(1150, 700, " bathroom ")
+        let bathroom = this.add.text(1150, 700, " bathroom ")
         .setDepth(1)
         .setScale(3)
         .setInteractive()
@@ -78,6 +79,7 @@ class DoorWay extends AdventureScene {
         .on('pointerdown', () => {
             this.gotoScene("sink")
         });
+        this.highlightOnHover(bathroom);
     }
 }
 
@@ -112,6 +114,7 @@ class Sink extends AdventureScene {
             .setInteractive()
             .setScale(3)
             .on('pointerover', () => this.showMessage("Ah, so this is how people see me."));
+            this.highlightOnHover(self);
 
         let bathroomExit = this.add.text(150, 450, " exit ") // exit the bathroom
             .setFontSize(50)
@@ -120,6 +123,7 @@ class Sink extends AdventureScene {
         .on('pointerdown', () => {
             this.gotoScene("doorway");
             })
+        this.highlightOnHover(bathroomExit);
     }
 }
 
@@ -163,9 +167,12 @@ class Stairs extends AdventureScene {
     onEnter() {
         let background = this.add.sprite(715, 540, "stairs");
         background.setScale(0.55)
-    }
 
-}
+        .on('pointerdown', () => {
+            this.gotoScene("Intro");
+    })
+
+}}
 
 class BadEnd extends AdventureScene {
     constructor() {
@@ -179,6 +186,10 @@ class BadEnd extends AdventureScene {
     onEnter() {
         let background = this.add.sprite(715, 540, "bad end");
         background.setScale(0.55)
+
+        .on('pointerdown', () => {
+            this.gotoScene("Intro");
+        })
     }
 
 }
