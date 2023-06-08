@@ -99,20 +99,26 @@ class Sink extends AdventureScene {
         background.setScale(0.55);
 
         let pepperspray = this.add.image(1200, 1000, "pepper spray")
-            .on
-            .on('pointerover', () => this.showMessage("Sometimes, I wonder how this would feel."))
+            .setScale(0.5)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("I wonder if I can season my steak with this?"))
             .on('pointerdown', () => {
                 this.showMessage("Equipped PepperSpray.")
                 this.gainItem('pepper spray')
                 this.spriteRemove(pepperspray)
         });
 
-        let bathroomExit = this.add.text(180, 780, " ") // exit the bathroom
-            .setFontSize(400)
+        let self = this.add.text(650, 450, " self ")
+            .setInteractive()
+            .setScale(3)
+            .on('pointerover', () => this.showMessage("Ah, so this is how people see me."));
+
+        let bathroomExit = this.add.text(150, 450, " exit ") // exit the bathroom
+            .setFontSize(50)
             .setInteractive()
         .on('pointerover', () => this.showMessage("Exit the bathroom"))
         .on('pointerdown', () => {
-            this.gotoScene("walkway");
+            this.gotoScene("doorway");
             })
     }
 }
@@ -225,5 +231,6 @@ const game = new Phaser.Game({
     },
     scene: [Intro, DoorWay, Sink, WalkWay, Stairs, BadEnd, Outro1, Outro2],
     //scene: [DoorWay],
+    //scene: [Sink],
     title: "Saturday",
 });
