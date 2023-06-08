@@ -13,29 +13,20 @@ class DoorWay extends AdventureScene {
 
     onEnter() {
         let background = this.add.sprite(700,520, "door way");
-        background.setScale(0.55);
-
-        let bathroomDoor = this.add.text(1000, 600, " AD")
-            .setDepth(1)
-            .setScale(10)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("Enter the bathroom.")
-                this.gotoScene("sink")
-            });
+        background.setScale(0.55);   
 
         let coat = this.add.image(720, 480, "coat")
-            .setDepth(1)
+            .setDepth()
             .setScale(0.5)
             .setInteractive()
-            
             .on('pointerover', () => this.showMessage("A coat to shield myself from the world. Good coat"))
             
             .on('pointerdown', () => {
                 this.showMessage("Coat, ON. Nothing can stop me now.")
-                this.gainItem("coat")
+                this.gainItem('coat')
                 this.spriteRemove(coat)
-            })
+            });
+
         
         let keys = this.add.image(950, 500, "keys")
             .setDepth(1)
@@ -48,15 +39,15 @@ class DoorWay extends AdventureScene {
                 this.spriteRemove(keys)
             });
     
-            let painting = this.add.text(180, 400, " ")
+            let painting = this.add.text(180, 400, " painting ")
             .setDepth(1)
             .setInteractive()
-            .setScale(10)
+            .setScale(2)
             .on('pointerover', () => this.showMessage("Taken on my 16th birthday. I'm 20 now. The guy in the back is kinda weird."))  
 
-            let mainDoor = this.add.text(700, 480, " ")
-            .setDepth(1)
-            .setScale(5)
+            let mainDoor = this.add.text(550, 300, " main door ")
+            .setDepth(2)
+            .setScale(2)
             .setInteractive()
 
             .on('pointerover', () => {
@@ -75,6 +66,18 @@ class DoorWay extends AdventureScene {
                     this.showMessage("I think I'm forgetting something...")
                 }
             });
+
+            
+        let bathroomDoor = this.add.text(1150, 700, " bathroom ")
+        .setDepth(1)
+        .setScale(3)
+        .setInteractive()
+        .on('pointerover', () => {
+            this.showMessage("Enter the bathroom.")
+        })
+        .on('pointerdown', () => {
+            this.gotoScene("sink")
+        });
     }
 }
 
@@ -93,12 +96,11 @@ class Sink extends AdventureScene {
 
     onEnter() {
         let background = this.add.sprite(715, 540, "sink");
-        background.setScale(1.155);
+        background.setScale(0.55);
 
         let pepperspray = this.add.image(1200, 1000, "pepper spray")
-        .on('pointerover', () => this.emphasizeItem(pepperspray))
+            .on
             .on('pointerover', () => this.showMessage("Sometimes, I wonder how this would feel."))
-            .on('pointerout', () => this.deEmphasizeItem(pepperspray))
             .on('pointerdown', () => {
                 this.showMessage("Equipped PepperSpray.")
                 this.gainItem('pepper spray')
@@ -127,7 +129,7 @@ class WalkWay extends AdventureScene { // whats wrong with this???
 
     onEnter() {
         let background = this.add.sprite(715, 540, "walkway");
-        background.setScale(1.155)
+        background.setScale(0.55)
 
         let rightArrow = this.add.text(307.5, 200, "➡️")
         .setScale(5)
@@ -154,7 +156,7 @@ class Stairs extends AdventureScene {
 
     onEnter() {
         let background = this.add.sprite(715, 540, "stairs");
-        background.setScale(1.155)
+        background.setScale(0.55)
     }
 
 }
@@ -170,7 +172,7 @@ class BadEnd extends AdventureScene {
 
     onEnter() {
         let background = this.add.sprite(715, 540, "bad end");
-        background.setScale(1.155)
+        background.setScale(0.55)
     }
 
 }

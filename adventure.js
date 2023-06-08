@@ -9,7 +9,7 @@ class AdventureScene extends Phaser.Scene {
         this.name = name;
     }
 
-    create() {
+    create() { 
         this.transitionDuration = 1000;
 
         this.w = this.game.config.width;
